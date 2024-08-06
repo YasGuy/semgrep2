@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="10" tests="10" time="0.0">
+	<testsuite disabled="0" errors="0" failures="10" name="semgrep results" skipped="0" tests="10" time="0">
+		<testcase name="javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection" classname="app.js" file="app.js" line="11">
+			<failure type="ERROR" message="Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements.">  const [results, metadata] = await sequelize.query(&quot;SELECT * FROM `users`&quot; + &quot; WHERE id = '&quot; + req.query.message + &quot;'&quot;);
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.injection.tainted-sql-string.tainted-sql-string" classname="app.js" file="app.js" line="11">
+			<failure type="ERROR" message="Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries.">  const [results, metadata] = await sequelize.query(&quot;SELECT * FROM `users`&quot; + &quot; WHERE id = '&quot; + req.query.message + &quot;'&quot;);
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.audit.xss.direct-response-write.direct-response-write" classname="app.js" file="app.js" line="12">
+			<failure type="WARNING" message="Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use 'resp.render()' to render safely escaped HTML.">  res.send(results)
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.injection.tainted-sql-string.tainted-sql-string" classname="app.js" file="app.js" line="17">
+			<failure type="ERROR" message="Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries.">  let query = `SELECT * FROM users WHERE id = '${req.query.message}'`
+</failure>
+		</testcase>
+		<testcase name="javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection" classname="app.js" file="app.js" line="18">
+			<failure type="ERROR" message="Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements.">  const [results, metadata] = await sequelize.query(query);
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.audit.xss.direct-response-write.direct-response-write" classname="app.js" file="app.js" line="19">
+			<failure type="WARNING" message="Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use 'resp.render()' to render safely escaped HTML.">  res.send(results)
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.injection.tainted-sql-string.tainted-sql-string" classname="app.js" file="app.js" line="25">
+			<failure type="ERROR" message="Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries.">  query = query.concat(req.query.message)
+</failure>
+		</testcase>
+		<testcase name="javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection" classname="app.js" file="app.js" line="27">
+			<failure type="ERROR" message="Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements.">  const [results, metadata] = await sequelize.query(query);
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.audit.xss.direct-response-write.direct-response-write" classname="app.js" file="app.js" line="28">
+			<failure type="WARNING" message="Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use 'resp.render()' to render safely escaped HTML.">  res.send(results)
+</failure>
+		</testcase>
+		<testcase name="javascript.express.security.audit.xss.direct-response-write.direct-response-write" classname="app.js" file="app.js" line="34">
+			<failure type="WARNING" message="Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use 'resp.render()' to render safely escaped HTML.">    res.send(&quot;message: &quot; + req.query.message);
+</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

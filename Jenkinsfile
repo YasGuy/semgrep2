@@ -19,6 +19,11 @@ pipeline {
                     args '-u root --privileged --network host'
             }
         }
+            steps {
+                sh 'semgrep --version'
+                sh "semgrep --config p/expressjs"
+            }
+        }
         stage('OWASP Dependency-Check Vulnerabilities') {
       steps {
         dependencyCheck additionalArguments: ''' 
@@ -30,16 +35,5 @@ pipeline {
         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
       }
     }
-            steps {
-                sh 'semgrep --version'
-                sh "semgrep --config p/expressjs"
-            }
-        }
-        stage('Dependancy checking') {
-            agent any
-            steps {
-                sh 'echo Dependancy checking'
-            }
-        }
     }
 }

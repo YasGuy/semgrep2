@@ -31,7 +31,7 @@ pipeline {
                     -o './'
                     -s './'
                     -f 'ALL' 
-                    --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+                    --prettyPrint''', odcInstallation: 'OWASP_Dependency-Check_Vulnerabilities'
         
         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
       }
